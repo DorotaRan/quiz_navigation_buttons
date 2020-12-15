@@ -1,0 +1,29 @@
+import React, { useState } from "react";
+import "./styles.css";
+
+export default function QuizNavBar({ questions }) {
+  const [questionIndex, setQuestionIndex] = useState(0);
+
+  const goBack = () =>
+    setQuestionIndex((prevQuestionIndex) => prevQuestionIndex - 1);
+  const goToNext = () =>
+    setQuestionIndex((prevQuestionIndex) => prevQuestionIndex + 1);
+
+  const onLastQuestion = questionIndex === questionIndex.length - 1;
+
+  const onFirstQuestion = questionIndex === 0;
+
+  return (
+    <nav>
+      <span>Question #{questionIndex + 1}</span>
+      <div>
+        <button onClick={goBack} disabled={onFirstQuestion}>
+          Go Back
+        </button>
+        <button onClick={goToNext} disabled={onLastQuestion}>
+          Next Question
+        </button>
+      </div>
+    </nav>
+  );
+}
